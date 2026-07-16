@@ -1,0 +1,39 @@
+import os
+import random
+class Student:
+        def Create_file(self,filename):
+            if os.path.exists(filename):
+                print("already exists")
+            else:
+                with open(filename, "w") as file:
+                    file.write(f"ID,Name,Dep,Year,Payment\n")
+                print("file succefully created")
+        def Add_Student(self,name,Dep,Year,Payment,ids=0):
+            self.name=name
+            self.Dep=Dep
+            self.Year=Year
+            self.Payment=Payment
+            self.ids=ids
+            with open("Students.csv", "a") as file:
+                file.write(f"{self.ids},{self.name},{self.Dep},{self.Year},{self.Payment}\n")
+            print("added succesfully")
+        
+obj=Student()
+while True:
+    print("1.Register\n2.Name\n3.ID\n4.Dept\n5.Year\n6.Payment\n")
+    n=int(input())
+    if n == 1:
+        filename=input()
+        obj.Create_file(filename)
+    elif n == 2:
+        name=input()
+        Dep=input()
+        Year=int(input())
+        Payment=float(input())
+        i=" "
+        roll=random.sample([1,2,3,4,5,6,7,8,9],k=4)
+        for n in roll:
+            i+=str(n)
+        final=str(Year)+i
+        ids=final
+        obj.Add_Student(name,Dep,Year,Payment,ids)
